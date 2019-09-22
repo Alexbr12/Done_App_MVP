@@ -2,6 +2,9 @@ package com.example.done_app_mvp.cadastro;
 
 public class Pessoa {
 
+    private  String name, cpf, regiao;
+    private  String profissao, interesse;
+
     public Pessoa(String name, String cpf, String regiao, String profissao, String interesse) {
         this.name = name;
         this.cpf = cpf;
@@ -50,8 +53,7 @@ public class Pessoa {
         this.interesse = interesse;
     }
 
-    private  String name, cpf, regiao;
-    private  String profissao, interesse;
+
 
 
 }
