@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ClassesActivity">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="126dp">
+
+            <ImageView
+                android:id="@+id/imgCom"
+                android:layout_width="211dp"
+                android:layout_height="117dp"
+                android:tag="comunicacao"
+                app:srcCompat="@drawable/class_comunicacao"
+                tools:srcCompat="@drawable/class_comunicacao" />
+
+            <ImageView
+                android:id="@+id/imgEngenharia"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:tag="engenharia"
+                app:srcCompat="@drawable/class_engenharia"
+                tools:srcCompat="@drawable/class_engenharia" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/title1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtCom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Comunicação"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtEngenharia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Engenharia"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgEdu"
+                android:layout_width="200dp"
+                android:layout_height="113dp"
+                android:tag="educacao"
+                app:srcCompat="@drawable/class_educacao"
+                tools:srcCompat="@drawable/class_educacao" />
+
+            <ImageView
+                android:id="@+id/imgConstrucaoC"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:tag="construcaoC"
+                app:srcCompat="@drawable/class_construcao_civil"
+                tools:srcCompat="@drawable/class_construcao_civil" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/title2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtEdu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Educação"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtConstrucao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Construção Civil"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgEventos"
+                android:layout_width="212dp"
+                android:layout_height="match_parent"
+                android:tag="eventos"
+                app:srcCompat="@drawable/class_eventos"
+                tools:srcCompat="@drawable/class_eventos" />
+
+            <ImageView
+                android:id="@+id/imgGestao"
+                android:layout_width="212dp"
+                android:layout_height="110dp"
+                android:tag="gestao"
+                app:srcCompat="@drawable/class_gestao"
+                tools:srcCompat="@drawable/class_gestao" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/title3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtEventos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Eventos"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtGestao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Gestão"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgDireito"
+                android:layout_width="170dp"
+                android:layout_height="112dp"
+                android:tag="direito"
+                app:srcCompat="@drawable/class_juridica"
+                tools:srcCompat="@drawable/class_juridica" />
+
+            <ImageButton
+                android:id="@+id/btnTi"
+                style="@android:style/Widget.Material.Light.ImageButton"
+                android:layout_width="212dp"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:backgroundTint="?android:attr/panelBackground"
+                android:cropToPadding="true"
+                android:scaleType="fitCenter"
+                android:tag="ti"
+                app:srcCompat="@drawable/class_ti"
+                tools:srcCompat="@drawable/class_ti"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/title4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtDireito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Direito"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtTi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="TI"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/localRow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <EditText
+                android:id="@+id/txtLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Local"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnLocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Local" />
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

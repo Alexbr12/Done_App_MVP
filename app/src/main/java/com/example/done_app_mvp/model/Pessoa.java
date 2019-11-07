@@ -1,16 +1,25 @@
-package com.example.done_app_mvp.cadastro;
+package com.example.done_app_mvp.model;
 
 public class Pessoa {
 
     private  String name, cpf, regiao;
-    private  String profissao, interesse;
+    private  String profissao,avatar , curriculo;
+    public String id;
 
-    public Pessoa(String name, String cpf, String regiao, String profissao, String interesse) {
+    public Pessoa(){
+        this.name = "";
+        this.cpf = "";
+        this.regiao = "";
+        this.profissao = "";
+        this.avatar = "link";
+    }
+
+    public Pessoa(String name, String cpf, String regiao, String profissao, String avatar) {
         this.name = name;
         this.cpf = cpf;
         this.regiao = regiao;
         this.profissao = profissao;
-        this.interesse = interesse;
+        this.avatar = "link";
     }
 
     public String getName() {
@@ -45,12 +54,12 @@ public class Pessoa {
         this.profissao = profissao;
     }
 
-    public String getInteresse() {
-        return interesse;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setInteresse(String interesse) {
-        this.interesse = interesse;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
 

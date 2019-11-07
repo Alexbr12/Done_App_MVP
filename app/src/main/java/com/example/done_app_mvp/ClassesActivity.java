@@ -1,0 +1,199 @@
+package com.example.done_app_mvp;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
+//import android.widget.Toolbar;
+import com.example.done_app_mvp.model.Cadastro;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ClassesActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private ImageView  direito, comunicacao, eventos;
+    private ImageView gestao, engenharia, construcao, educacao;
+    private ImageButton ti;
+    private Toolbar toolbar;
+
+    private Button local;
+    private EditText txtLocal;
+    private static final String TAG = "LOCAIS";
+    private Log log;
+
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_classes);
+
+        initializer();
+        listeners();
+
+
+        toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        local.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    local(txtLocal.getText().toString());
+                } catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Não deu certo!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.btnLogout:
+                deslogarUsuario();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public ArrayList<CharSequence> createList(String str){
+        ArrayList<CharSequence> myList = new ArrayList<>();
+
+        switch (str){
+            case ("comunicacao"):
+                myList.add("Tradutor"); myList.add("");
+                myList.add(""); myList.add("");
+                myList.add(""); myList.add("");
+                break;
+            case ("engenharia"):
+                myList.add("Civil");     myList.add("Militar");
+                myList.add("Eletrico");  myList.add("Produção");
+                myList.add("Alimentos"); myList.add("");
+                break;
+            case ("educacao"):
+                myList.add("Professor Primario"); myList.add("Matematica");
+                myList.add("Diretor");            myList.add("Portugues");
+                break;
+            case ("construcaoC"):
+                myList.add("Pedreiro");       myList.add("Ajudante");
+                myList.add("Chefe de Obras"); myList.add("Fornecedor");
+                break;
+            case ("eventos"):
+                myList.add(""); myList.add("");
+                myList.add(""); myList.add("");
+                myList.add(""); myList.add("");
+                break;
+            case ("gestao"):
+                myList.add("Diretor"); myList.add("Secretario");
+                myList.add("Contador");
+                break;
+            case ("direito"):
+                myList.add("Cível");    myList.add("Criminal");
+                myList.add("Família");  myList.add("Trabalho");
+                myList.add("Tributário");
+                break;
+            case ("ti"):
+                myList.add("Redes"); myList.add("Programador");
+                myList.add("Analista de Requisitos"); myList.add("Q.A.");
+                myList.add("Tecnico");
+                break;
+            default:
+                Toast.makeText(this, "Botao errado", Toast.LENGTH_SHORT).show();
+        }
+
+        return (myList);
+    }
+
+    public void initializer(){
+        ti          = findViewById(R.id.btnTi);
+        direito     = findViewById(R.id.imgDireito);
+        comunicacao = findViewById(R.id.imgCom);
+        eventos     = findViewById(R.id.imgEventos);
+        gestao      = findViewById(R.id.imgGestao);
+        engenharia  = findViewById(R.id.imgEngenharia);
+        construcao  = findViewById(R.id.imgConstrucaoC);
+        educacao    = findViewById(R.id.imgEdu);
+        local       = findViewById(R.id.btnLocal);
+        txtLocal    = findViewById(R.id.txtLocal);
+    }
+
+    public void listeners(){
+        ti.setOnClickListener(this);
+        comunicacao.setOnClickListener(this);
+        eventos.setOnClickListener(this);
+        gestao.setOnClickListener(this);
+        engenharia.setOnClickListener(this);
+        construcao.setOnClickListener(this);
+        educacao.setOnClickListener(this);
+        direito.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view){
+        Intent i = new Intent(getApplicationContext(), Profissoes.class);
+        String nameClasse = view.getTag().toString();
+
+        i.putCharSequenceArrayListExtra("classe",createList(nameClasse));
+        startActivity(i);
+    }
+
+    private void deslogarUsuario(){
+        try{
+            FirebaseAuth.getInstance().signOut();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void local(String local) throws IOException {
+        List<Address> adress;
+        Geocoder geocoder = new Geocoder(this);
+        String city = "bosta";
+
+        adress = geocoder.getFromLocationName(local, 5);
+
+        if(!adress.isEmpty()) {
+            city = "" + adress.get(0).getLatitude() + ". " + adress.get(0).getLongitude();
+            log.i(TAG, "Coordenadas: " + city);
+        }
+        Toast.makeText(this, "Teste: " + city, Toast.LENGTH_SHORT).show();
+    }
+
+
+}

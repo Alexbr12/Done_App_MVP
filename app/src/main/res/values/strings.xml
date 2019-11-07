@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">Done_App_MVP</string>
+    <string name="app_name">Done!</string>
+    <string name="auth_failed">Autorização Falhou</string>
+    <string name="loading">Loading…</string>
+    <string name="google_maps_key">AIzaSyDzKvqtNMay4TBKhHyAauXgIl_mcdywEOM</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

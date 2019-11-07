@@ -1,15 +1,14 @@
-package com.example.done_app_mvp.cadastro;
+package com.example.done_app_mvp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import com.example.done_app_mvp.R;
 
-public class Cadastro extends AppCompatActivity {
+public class PerfilActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_perfil);
     }
 }

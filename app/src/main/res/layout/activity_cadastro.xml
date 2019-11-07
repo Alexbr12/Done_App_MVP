@@ -4,22 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cadastro.Cadastro">
+    tools:context=".model.Cadastro">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="410dp"
+        android:layout_height="725dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="-160dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="64dp" />
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="178dp"
+            app:srcCompat="@drawable/avatar"
+            tools:srcCompat="@drawable/avatar" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="14dp" />
+
+        <TextView
+            android:id="@+id/Dados"
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:text="  Dados Pessoais"
+            android:textAlignment="textStart"
+            android:textColor="#0E0909"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:typeface="sans" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/nomeTxt"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="58dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +54,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/campoCPF"
+                android:id="@+id/cpfTxt"
                 android:layout_width="386dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -37,7 +64,7 @@
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/campoRegiao"
+                android:id="@+id/regiaoTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -49,27 +76,86 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="63dp"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/campoProf"
-                android:layout_width="wrap_content"
+                android:id="@+id/profTxt"
+                android:layout_width="260dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Profissão"
-                android:inputType="numberDecimal" />
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/Endereco"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="  Endereço"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:typeface="sans" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="CEP"
+            android:inputType="textPostalAddress" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/campoInter"
+                android:id="@+id/editText3"
+                android:layout_width="305dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Rua"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Interesse (estagio, etc)"
+                android:hint="Bairro"
                 android:inputType="textPersonName" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Cidade">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="hint" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
     </LinearLayout>
