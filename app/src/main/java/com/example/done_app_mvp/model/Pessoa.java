@@ -2,22 +2,23 @@ package com.example.done_app_mvp.model;
 
 public class Pessoa {
 
-    private  String name, cpf, regiao;
-    private  String profissao,avatar , curriculo;
-    public String id;
+    private  String name, cpf, nascimento;
+    private  String classe, profissao,avatar , curriculo;
+    public   Double log, lat;
 
     public Pessoa(){
         this.name = "";
         this.cpf = "";
-        this.regiao = "";
         this.profissao = "";
-        this.avatar = "link";
+        this.nascimento = "";
+        this.avatar = "";
+        this.log = 0.0;
+        this.lat = 0.0;
     }
 
-    public Pessoa(String name, String cpf, String regiao, String profissao, String avatar) {
+    public Pessoa(String name, String cpf, String profissao, String avatar) {
         this.name = name;
         this.cpf = cpf;
-        this.regiao = regiao;
         this.profissao = profissao;
         this.avatar = "link";
     }
@@ -38,20 +39,20 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public String getRegiao() {
-        return regiao;
-    }
-
-    public void setRegiao(String regiao) {
-        this.regiao = regiao;
-    }
-
     public String getProfissao() {
         return profissao;
     }
 
     public void setProfissao(String profissao) {
         this.profissao = profissao;
+    }
+
+    public String getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
     }
 
     public String getAvatar() {
@@ -62,7 +63,22 @@ public class Pessoa {
         this.avatar = avatar;
     }
 
+    public String getClasse() {
+        return classe;
+    }
 
+    public void setClasse(String classe) {
+        this.classe = classe;
+    }
 
-
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "name='" + name + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", nascimento='" + nascimento + '\'' +
+                ", classe='" + classe + '\'' +
+                ", profissao='" + profissao + '\'' +
+                '}';
+    }
 }

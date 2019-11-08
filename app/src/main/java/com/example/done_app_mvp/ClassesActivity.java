@@ -35,12 +35,6 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
     private ImageButton ti;
     private Toolbar toolbar;
 
-    private Button local;
-    private EditText txtLocal;
-    private static final String TAG = "LOCAIS";
-    private Log log;
-
-
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +48,6 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
         toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
-        local.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    local(txtLocal.getText().toString());
-                } catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "Não deu certo!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
     }
 
@@ -147,8 +129,6 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
         engenharia  = findViewById(R.id.imgEngenharia);
         construcao  = findViewById(R.id.imgConstrucaoC);
         educacao    = findViewById(R.id.imgEdu);
-        local       = findViewById(R.id.btnLocal);
-        txtLocal    = findViewById(R.id.txtLocal);
     }
 
     public void listeners(){
@@ -167,7 +147,8 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
         Intent i = new Intent(getApplicationContext(), Profissoes.class);
         String nameClasse = view.getTag().toString();
 
-        i.putCharSequenceArrayListExtra("classe",createList(nameClasse));
+        i.putCharSequenceArrayListExtra("lista",createList(nameClasse));
+        i.putExtra("classe", nameClasse);
         startActivity(i);
     }
 
@@ -178,22 +159,5 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
     }
-
-
-
-    private void local(String local) throws IOException {
-        List<Address> adress;
-        Geocoder geocoder = new Geocoder(this);
-        String city = "bosta";
-
-        adress = geocoder.getFromLocationName(local, 5);
-
-        if(!adress.isEmpty()) {
-            city = "" + adress.get(0).getLatitude() + ". " + adress.get(0).getLongitude();
-            log.i(TAG, "Coordenadas: " + city);
-        }
-        Toast.makeText(this, "Teste: " + city, Toast.LENGTH_SHORT).show();
-    }
-
 
 }

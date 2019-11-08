@@ -27,7 +27,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="14dp" />
+            android:layout_height="27dp" />
 
         <TextView
             android:id="@+id/Dados"
@@ -43,9 +43,9 @@
         <EditText
             android:id="@+id/nomeTxt"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Name"
+            android:hint="Nome Completo"
             android:inputType="textPersonName" />
 
         <LinearLayout
@@ -55,7 +55,7 @@
 
             <EditText
                 android:id="@+id/cpfTxt"
-                android:layout_width="386dp"
+                android:layout_width="187dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:autofillHints=""
@@ -64,43 +64,45 @@
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/regiaoTxt"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtNascimento"
+                android:layout_width="56dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Região"
-                android:inputType="textPersonName" />
+                android:hint="Nascimento"
+                android:inputType="date" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="82dp"
             android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/txtClasse"
+                android:layout_width="76dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Classe"
+                android:inputType="textPersonName" />
+
+            <EditText
                 android:id="@+id/profTxt"
-                android:layout_width="260dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Profissão"
                 android:inputType="text" />
 
-            <Button
-                android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Save" />
-
         </LinearLayout>
 
         <TextView
             android:id="@+id/Endereco"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="  Endereço"
             android:textAlignment="viewStart"
             android:textColor="#000000"
@@ -108,21 +110,28 @@
             android:textStyle="italic"
             android:typeface="sans" />
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="CEP"
-            android:inputType="textPostalAddress" />
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="57dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/txtCep"
+                android:layout_width="249dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="CEP"
+                android:inputType="textPostalAddress" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtRua"
                 android:layout_width="305dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -131,13 +140,13 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editText2"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtNumber"
+                android:layout_width="119dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Bairro"
-                android:inputType="textPersonName" />
+                android:hint="N°"
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -146,16 +155,50 @@
             android:layout_height="39dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Cidade">
+            <EditText
+                android:id="@+id/txtBairro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Bairro"
+                android:inputType="textPersonName" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="hint" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/txtCidade"
+                android:layout_width="352dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Cidade"
+                android:inputType="textPersonName" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtEstado"
+                android:layout_width="51dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="UF"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="Save"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.done_app_mvp.adapter.ProfissoesAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -22,6 +24,7 @@ public class Profissoes extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<CharSequence> myDataset;
+    private String nomeClasse;
     private Toolbar toolbar;
 
     @Override
@@ -29,10 +32,13 @@ public class Profissoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profissoes);
 
+        EditText title = findViewById(R.id.titleClasse);
         recyclerView = (RecyclerView) findViewById(R.id.recycleBtn);
 
         Intent i = getIntent();
-        myDataset = i.getCharSequenceArrayListExtra("classe");
+        myDataset = i.getCharSequenceArrayListExtra("lista");
+        nomeClasse = i.getStringExtra("classe");
+        title.setText(nomeClasse);
 
 
         recyclerView.setHasFixedSize(true);
@@ -42,7 +48,7 @@ public class Profissoes extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new ProfissoesAdapter(myDataset);
+        mAdapter = new ProfissoesAdapter(myDataset, nomeClasse);
         recyclerView.setAdapter(mAdapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
@@ -62,10 +68,19 @@ public class Profissoes extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.btnLogout:
-                Toast.makeText(this, "bosta", Toast.LENGTH_SHORT).show();
+                deslogarUsuario();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void deslogarUsuario(){
+        try{
+            FirebaseAuth.getInstance().signOut();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
