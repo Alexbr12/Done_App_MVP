@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -22,10 +23,14 @@ import java.util.ArrayList;
 
 public class Locais extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener  {
 
+    String [] nomes;
+    double [] longitude;
+    double [] latitude;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<CharSequence> myDataset;
+    private ArrayList<String> myDataset;
 
     private MapView mapView;
     private GoogleMap gmap;
@@ -39,13 +44,13 @@ public class Locais extends AppCompatActivity implements OnMapReadyCallback, Goo
         //Configure Recycler
         //Fill the list
         myDataset = new ArrayList<>();
-        myDataset.add("Teste");
-        myDataset.add("Teste 1");
-        myDataset.add("Teste 2");
-        myDataset.add("Teste 3");
 
-//        Intent i = getIntent();
-//        myDataset = i.getCharSequenceArrayListExtra("classe");
+        Intent i = getIntent();
+        nomes     = i.getStringArrayExtra("nomes");
+        longitude = i.getDoubleArrayExtra("longitude");
+        latitude  = i.getDoubleArrayExtra("latitude");
+
+        for (String str : nomes) { myDataset.add(str);}
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleLocais);
         recyclerView.setHasFixedSize(true);
@@ -140,15 +145,22 @@ public class Locais extends AppCompatActivity implements OnMapReadyCallback, Goo
         gmap.setOnMyLocationButtonClickListener(this);
         gmap.setOnMyLocationClickListener(this);
 
-        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.920431, -43.907783)));
-        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.916527, -43.904656)));
-        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.884651, -43.895739)));
+//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.920431, -43.907783)));
+//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.916527, -43.904656)));
+//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.884651, -43.895739)));
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(-19.904416, -43.890069)).title("TESTE");
+        MarkerOptions markerOptions;
 
-        Marker marker = gmap.addMarker(markerOptions);
-        marker.showInfoWindow();
+        int tam = nomes.length;
+        for (int i = 0; i < tam; i++) {
+            markerOptions = new MarkerOptions();
+            markerOptions.position(new LatLng(latitude[i], longitude[i])).title(nomes[i]);
+
+            Marker marker = gmap.addMarker(markerOptions);
+            marker.showInfoWindow();
+        }
+
+
 
         //gmap.addMarker(marker);
     }

@@ -10,8 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.done_app_mvp.adapter.ProfissoesAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,13 +25,14 @@ public class Profissoes extends AppCompatActivity {
     private ArrayList<CharSequence> myDataset;
     private String nomeClasse;
     private Toolbar toolbar;
+    private ProfissoesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profissoes);
 
-        EditText title = findViewById(R.id.titleClasse);
+        TextView title = findViewById(R.id.titleClasse);
         recyclerView = (RecyclerView) findViewById(R.id.recycleBtn);
 
         Intent i = getIntent();
@@ -48,12 +48,29 @@ public class Profissoes extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new ProfissoesAdapter(myDataset, nomeClasse);
-        recyclerView.setAdapter(mAdapter);
+        adapter = new ProfissoesAdapter(myDataset, nomeClasse);
+
+
+        recyclerView.setAdapter(adapter);
+
+//        adapter.setOnItemClickListener(new ItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                Log.i(TAG, "Elemento " + position + " clicado.");
+//                Toast.makeText(getApplicationContext(), "FODAS", Toast.LENGTH_SHORT).show();
+//            }
+//
+//        });
 
         toolbar = (Toolbar) findViewById(R.id.toolbarPrincipal);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+    }
+
+    public void onPause() {
+        super.onPause();
+        adapter.flush();
     }
 
     @Override

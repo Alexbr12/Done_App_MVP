@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class LocaisAdapter extends RecyclerView.Adapter<LocaisAdapter.LocaisViewHolder>{
-    private ArrayList<CharSequence> mDatset;
+    private ArrayList<String> mDatset;
 
-    public LocaisAdapter(ArrayList<CharSequence> myDataset){
+    public LocaisAdapter(ArrayList<String> myDataset){
         this.mDatset = myDataset;
     }
 
@@ -37,7 +37,7 @@ public class LocaisAdapter extends RecyclerView.Adapter<LocaisAdapter.LocaisView
 
     @Override
     public void onBindViewHolder(@NonNull LocaisAdapter.LocaisViewHolder holder, int position) {
-        holder.button.setText(mDatset.get(position));
+        holder.button.setText((CharSequence) mDatset.get(position));
 
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override

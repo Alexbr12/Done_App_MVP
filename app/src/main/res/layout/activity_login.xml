@@ -7,16 +7,21 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/logo"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/new_logo_done" />
+        android:layout_height="347dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/new_logo_done" />
+    </FrameLayout>
 
     <EditText
         android:id="@+id/txtEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="61dp"
         android:ems="10"
         android:hint="Digite seu Email aqui"
         android:inputType="textEmailAddress" />
