@@ -1,9 +1,10 @@
-package com.example.done_app_mvp;
+package com.example.done_app_mvp.helper;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.example.done_app_mvp.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

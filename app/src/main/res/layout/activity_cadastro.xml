@@ -4,30 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".model.Cadastro">
+    tools:context=".activitys.CadastroActivity">
 
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="725dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
-
         <ImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="match_parent"
-            android:layout_height="178dp"
+            android:layout_width="wrap_content"
+            android:layout_height="276dp"
             app:srcCompat="@drawable/avatar"
             tools:srcCompat="@drawable/avatar" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="27dp" />
 
         <TextView
             android:id="@+id/Dados"
@@ -49,13 +42,13 @@
             android:inputType="textPersonName" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="61dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/cpfTxt"
-                android:layout_width="187dp"
+                android:layout_width="239dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:autofillHints=""
@@ -65,7 +58,7 @@
 
             <EditText
                 android:id="@+id/txtNascimento"
-                android:layout_width="56dp"
+                android:layout_width="169dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -75,13 +68,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="82dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/txtClasse"
-                android:layout_width="76dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -111,7 +104,7 @@
             android:typeface="sans" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -126,13 +119,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/txtRua"
-                android:layout_width="305dp"
+                android:layout_width="303dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -141,7 +134,7 @@
 
             <EditText
                 android:id="@+id/txtNumber"
-                android:layout_width="119dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -151,8 +144,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="39dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
@@ -166,7 +159,7 @@
 
             <EditText
                 android:id="@+id/txtCidade"
-                android:layout_width="352dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -176,13 +169,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/txtEstado"
-                android:layout_width="51dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
@@ -191,7 +184,7 @@
 
             <Button
                 android:id="@+id/btnSave"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="monospace"

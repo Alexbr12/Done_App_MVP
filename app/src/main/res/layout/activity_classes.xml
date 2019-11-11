@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ClassesActivity">
+    tools:context=".activitys.ClassesActivity">
 
     <include
         layout="@layout/toolbar"
@@ -198,7 +198,7 @@
                 android:scaleType="fitCenter"
                 android:tag="ti"
                 app:srcCompat="@drawable/class_ti"
-                tools:srcCompat="@drawable/class_ti"/>
+                tools:srcCompat="@drawable/class_ti" />
 
         </TableRow>
 

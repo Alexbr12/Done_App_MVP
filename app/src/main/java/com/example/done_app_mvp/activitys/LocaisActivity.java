@@ -1,4 +1,4 @@
-package com.example.done_app_mvp;
+package com.example.done_app_mvp.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.Toast;
 
+import com.example.done_app_mvp.R;
 import com.example.done_app_mvp.adapter.LocaisAdapter;
+import com.example.done_app_mvp.model.Pessoa;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -21,16 +24,17 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-public class Locais extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener  {
+public class LocaisActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener  {
 
-    String [] nomes;
+    //String [] nomes;
     double [] longitude;
     double [] latitude;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<String> myDataset;
+    private ArrayList<String> myNomesDataset;
+    private ArrayList<Pessoa> listPessoas;
 
     private MapView mapView;
     private GoogleMap gmap;
@@ -43,14 +47,26 @@ public class Locais extends AppCompatActivity implements OnMapReadyCallback, Goo
 
         //Configure Recycler
         //Fill the list
-        myDataset = new ArrayList<>();
-
         Intent i = getIntent();
-        nomes     = i.getStringArrayExtra("nomes");
-        longitude = i.getDoubleArrayExtra("longitude");
-        latitude  = i.getDoubleArrayExtra("latitude");
+        listPessoas = new ArrayList<>();
+        Pessoa pessoa;
 
-        for (String str : nomes) { myDataset.add(str);}
+        Parcelable [] list = getIntent().getExtras().getParcelableArray("listParcel");
+        int tam = list.length;
+
+        myNomesDataset  = new ArrayList<>();
+        longitude       = new double[tam];
+        latitude        = new double[tam];
+
+        for (int j = 0; j < tam; j++) {
+            pessoa = (Pessoa)list[j];
+            listPessoas.add(pessoa);
+            myNomesDataset.add(pessoa.getName());
+            longitude[j] = pessoa.log;
+            latitude[j] = pessoa.lat;
+        }
+
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycleLocais);
         recyclerView.setHasFixedSize(true);
@@ -60,7 +76,7 @@ public class Locais extends AppCompatActivity implements OnMapReadyCallback, Goo
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new LocaisAdapter(myDataset);
+        mAdapter = new LocaisAdapter(myNomesDataset, list);
         recyclerView.setAdapter(mAdapter);
 
 
@@ -145,24 +161,16 @@ public class Locais extends AppCompatActivity implements OnMapReadyCallback, Goo
         gmap.setOnMyLocationButtonClickListener(this);
         gmap.setOnMyLocationClickListener(this);
 
-//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.920431, -43.907783)));
-//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.916527, -43.904656)));
-//        gmap.addMarker(new MarkerOptions().position(new LatLng(-19.884651, -43.895739)));
-
         MarkerOptions markerOptions;
+        int tam = myNomesDataset.size();
 
-        int tam = nomes.length;
         for (int i = 0; i < tam; i++) {
             markerOptions = new MarkerOptions();
-            markerOptions.position(new LatLng(latitude[i], longitude[i])).title(nomes[i]);
+            markerOptions.position(new LatLng(latitude[i], longitude[i])).title(myNomesDataset.get(i));
 
             Marker marker = gmap.addMarker(markerOptions);
             marker.showInfoWindow();
         }
-
-
-
-        //gmap.addMarker(marker);
     }
 
     @Override

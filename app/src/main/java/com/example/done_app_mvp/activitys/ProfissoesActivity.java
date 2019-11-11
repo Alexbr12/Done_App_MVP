@@ -1,4 +1,4 @@
-package com.example.done_app_mvp;
+package com.example.done_app_mvp.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,12 +12,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.done_app_mvp.R;
 import com.example.done_app_mvp.adapter.ProfissoesAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
-public class Profissoes extends AppCompatActivity {
+public class ProfissoesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -57,7 +58,7 @@ public class Profissoes extends AppCompatActivity {
 //            @Override
 //            public void onItemClick(int position) {
 //                Log.i(TAG, "Elemento " + position + " clicado.");
-//                Toast.makeText(getApplicationContext(), "FODAS", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "TESTE", Toast.LENGTH_SHORT).show();
 //            }
 //
 //        });

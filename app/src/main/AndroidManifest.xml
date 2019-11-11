@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PerfilActivity"></activity>
+        <activity android:name=".activitys.PerfilActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,20 +30,19 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".helper.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Locais" />
-        <activity android:name=".Profissoes" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".activitys.LocaisActivity" />
+        <activity android:name=".activitys.ProfissoesActivity" />
+        <activity android:name=".activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Lista" />
-        <activity android:name=".model.Cadastro" />
-        <activity android:name=".ClassesActivity" />
+        <activity android:name=".activitys.CadastroActivity" />
+        <activity android:name=".activitys.ClassesActivity" />
     </application>
 
 </manifest>

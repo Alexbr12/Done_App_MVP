@@ -1,6 +1,9 @@
 package com.example.done_app_mvp.model;
 
-public class Pessoa {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Pessoa implements Parcelable{
 
     private  String name, cpf, nascimento;
     private  String classe, profissao,avatar , curriculo;
@@ -21,6 +24,17 @@ public class Pessoa {
         this.cpf = cpf;
         this.profissao = profissao;
         this.avatar = "link";
+    }
+
+    private Pessoa(Parcel p){
+        name        = p.readString();
+        cpf         = p.readString();
+        nascimento  = p.readString();
+        classe      = p.readString();
+        profissao   = p.readString();
+        avatar      = p.readString();
+        log         = p.readDouble();
+        lat         = p.readDouble();
     }
 
     public String getName() {
@@ -80,5 +94,34 @@ public class Pessoa {
                 ", classe='" + classe + '\'' +
                 ", profissao='" + profissao + '\'' +
                 '}';
+    }
+
+    public static final Parcelable.Creator<Pessoa>
+        CREATOR = new Parcelable.Creator<Pessoa>(){
+
+        public Pessoa createFromParcel(Parcel in){
+            return new Pessoa(in);
+        }
+
+        public Pessoa[] newArray(int size){
+            return new Pessoa[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(cpf);
+        dest.writeString(nascimento);
+        dest.writeString(classe);
+        dest.writeString(profissao);
+        dest.writeString(avatar);
+        dest.writeDouble(log);
+        dest.writeDouble(lat);
     }
 }

@@ -1,32 +1,23 @@
-package com.example.done_app_mvp;
+package com.example.done_app_mvp.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 //import android.widget.Toolbar;
-import com.example.done_app_mvp.model.Cadastro;
-import com.google.android.gms.maps.GoogleMap;
+import com.example.done_app_mvp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClassesActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -110,7 +101,7 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case ("ti"):
                 myList.add("Redes"); myList.add("Programador");
-                myList.add("Analista de Requisitos"); myList.add("Q.A.");
+                myList.add("Analista de Requisitos"); myList.add("QA");
                 myList.add("Tecnico");
                 break;
             default:
@@ -144,7 +135,7 @@ public class ClassesActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view){
-        Intent i = new Intent(getApplicationContext(), Profissoes.class);
+        Intent i = new Intent(getApplicationContext(), ProfissoesActivity.class);
         String nameClasse = view.getTag().toString();
 
         i.putCharSequenceArrayListExtra("lista",createList(nameClasse));

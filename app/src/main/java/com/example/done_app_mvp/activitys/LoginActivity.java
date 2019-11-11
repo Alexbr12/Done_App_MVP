@@ -1,4 +1,4 @@
-package com.example.done_app_mvp;
+package com.example.done_app_mvp.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.done_app_mvp.model.Cadastro;
+import com.example.done_app_mvp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -137,7 +137,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btnCreate && validateForm()) {
-            Intent intent = new Intent(getApplicationContext(), Cadastro.class);
+            Intent intent = new Intent(getApplicationContext(), CadastroActivity.class);
 
                 intent.putExtra("email", email.getText().toString());
                 intent.putExtra("senha", senha.getText().toString());

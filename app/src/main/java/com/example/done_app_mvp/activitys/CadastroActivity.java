@@ -1,4 +1,4 @@
-package com.example.done_app_mvp.model;
+package com.example.done_app_mvp.activitys;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.done_app_mvp.ClassesActivity;
 import com.example.done_app_mvp.R;
-import com.google.android.gms.maps.GoogleMap;
+import com.example.done_app_mvp.model.Endereco;
+import com.example.done_app_mvp.model.Pessoa;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -27,16 +27,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class Cadastro extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity {
 
+    private Button save;
     private String senha, email;
     public ProgressDialog mProgressDialog;
 
@@ -55,7 +59,7 @@ public class Cadastro extends AppCompatActivity {
     private Endereco endereco;
     private EditText cep, rua, num, bairro, cidade, estado;
 
-    private Button save;
+    private Bitmap imagem;
     private static final int SELECAO_GALERIA = 200;
 
     @Override
@@ -109,16 +113,14 @@ public class Cadastro extends AppCompatActivity {
 //                        // ...
 //                    }
 //                });
-
-
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)  {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
-            Bitmap imagem = null;
+            //Bitmap imagem = null;
 
             try {
 
@@ -132,57 +134,74 @@ public class Cadastro extends AppCompatActivity {
 
                 //Caso tenha sido escolhido uma imagem
                 if (imagem != null) {
-
                     //Configura imagem na tela
                     avatar.setImageBitmap(imagem);
-                }
-
-                //Caso tenha sido escolhido uma imagem
-                if (imagem != null) {
-
-                    //Configura imagem na tela
-                    avatar.setImageBitmap(imagem);
-
-                    //Recuperar dados da imagem para o firebase
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
-                    byte[] dadosImagem = baos.toByteArray();
-
-                    //Salvar imagem no firebase
-                    StorageReference imagemRef = mStorageRef
-                            .child("imagens")
-                            .child("perfil")
-                            .child("teste" + ".jpeg");
-
-                    UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Cadastro.this,
-                                    "Erro ao fazer upload da imagem",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            //Recuperar local da foto
-//                            Uri url = taskSnapshot.getDownloadUrl();
-//                            atualizarFotoUsuario( url );
-
-                            Toast.makeText(Cadastro.this,
-                                    "Sucesso ao fazer upload da imagem",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+//                    //Recuperar dados da imagem para o firebase
+//                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+//                    byte[] dadosImagem = baos.toByteArray();
+//
+//                    //Salvar imagem no firebase
+//                    final StorageReference imagemRef = mStorageRef
+//                            .child("imagens")
+//                            .child("perfil")
+//                            .child(mAuth.getUid() + ".jpeg");
+//
+//                    UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(CadastroActivity.this,"Erro ao fazer upload da imagem",Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                        //Recuperar local da foto
+//                        try {
+//                            File localFile = File.createTempFile("images", "jpg");
+//
+//                            imagemRef.getFile(localFile)
+//                                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                                        @Override
+//                                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                                            // Successfully downloaded data to local file
+//                                            // ...
+//                                        }
+//                                    }).addOnFailureListener(new OnFailureListener() {
+//                                @Override
+//                                public void onFailure(@NonNull Exception exception) {
+//                                    // Handle failed download
+//                                    // ...
+//                                }
+//                            });
+//                            pessoa.setAvatar(imagemRef.toString());
+//
+//                        }catch (Exception e){
+//                            Toast.makeText(CadastroActivity.this,"Teste: " +  e, Toast.LENGTH_SHORT).show();
+//                        }
+//
+//
+//
+//                            Toast.makeText(CadastroActivity.this,
+//                                    "Sucesso ao fazer upload da imagem",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//
+//
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
     private void signIn(String email, String password) {
@@ -199,22 +218,23 @@ public class Cadastro extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             try {
                                 createPessoa();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            salvarImagem();
                             createAccount(pessoa, endereco);
                             startActivity(new Intent(getApplicationContext(), ClassesActivity.class));
 
                         } else {
                             // If sign in fails, display a message to the user.
 //                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(Cadastro.this, "Problemas na criação da conta" +
+                            Toast.makeText(CadastroActivity.this, "Problemas na criação da conta" +
                                             "\nEntre em contato com o Suporte.",
                                     Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
-
                         }
 
                         // [START_EXCLUDE]
@@ -228,6 +248,62 @@ public class Cadastro extends AppCompatActivity {
         // [END sign_in_with_email]
     }
 
+    public void salvarImagem(){
+        //Recuperar dados da imagem para o firebase
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+        byte[] dadosImagem = baos.toByteArray();
+
+        //Salvar imagem no firebase
+        final StorageReference imagemRef = mStorageRef
+                .child("imagens")
+                .child("perfil")
+                .child(mAuth.getUid() + ".jpeg");
+
+        UploadTask uploadTask = imagemRef.putBytes(dadosImagem);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(CadastroActivity.this,"Erro ao fazer upload da imagem",Toast.LENGTH_SHORT).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                pessoa.setAvatar(imagemRef.toString());
+                //Recuperar local da foto
+                try {
+                    File localFile = File.createTempFile("images", "jpg");
+
+                    imagemRef.getFile(localFile)
+                            .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                                    // Successfully downloaded data to local file
+                                    // ...
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle failed download
+                            // ...
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    Toast.makeText(CadastroActivity.this,"Teste: " +  e, Toast.LENGTH_SHORT).show();
+                }
+
+                Toast.makeText(CadastroActivity.this,
+                        "Sucesso ao fazer upload da imagem",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
     public void createAccount(Pessoa pessoa, Endereco endereco) {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference(pessoa.getClasse());
@@ -236,6 +312,24 @@ public class Cadastro extends AppCompatActivity {
         myRef = database.getReference("ENDERECOS");
         myRef.child(mAuth.getUid()).setValue(endereco);
     }
+
+//    public void getAvatar() throws Exception{
+//        File localFile = File.createTempFile("images", "jpg");
+//        riversRef.getFile(localFile)
+//                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                        // Successfully downloaded data to local file
+//                        // ...
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception exception) {
+//                // Handle failed download
+//                // ...
+//            }
+//        });
+//    }
 
     private Address local(String local) throws IOException {
         List<Address> adressList;
@@ -306,9 +400,10 @@ public class Cadastro extends AppCompatActivity {
         //Buttons
         save = findViewById(R.id.btnSave);
 
-        //Auth
+        //FireBase
         mAuth = FirebaseAuth.getInstance();
-
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        imagem = null;
     }
 }

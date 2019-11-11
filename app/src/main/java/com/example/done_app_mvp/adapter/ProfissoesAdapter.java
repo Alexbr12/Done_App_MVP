@@ -2,6 +2,7 @@ package com.example.done_app_mvp.adapter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.done_app_mvp.Locais;
-import com.example.done_app_mvp.Profissoes;
+import com.example.done_app_mvp.activitys.LocaisActivity;
 import com.example.done_app_mvp.R;
 import com.example.done_app_mvp.model.Pessoa;
 import com.google.firebase.database.DataSnapshot;
@@ -63,26 +63,6 @@ public class ProfissoesAdapter extends RecyclerView.Adapter<ProfissoesAdapter.Pr
 
                 getPessoas(mDataProf.get(posi).toString(), v);
 
-
-//                int size = pessoaArrayList.size();
-//                if(size > 0) {
-//                    String [] nomes     = new String[size];
-//                    double [] longitude = new double[size];
-//                    double [] latitude  = new double[size];
-//
-//                    for (int i = 0; i < size; i++) {
-//                        nomes[i]     = pessoaArrayList.get(i).getName();
-//                        longitude[i] = pessoaArrayList.get(i).log;
-//                        latitude[i]  = pessoaArrayList.get(i).lat;
-//                    }
-//
-//                    Intent i = new Intent(v.getContext(), Locais.class);
-//                    i.putExtra("nomes", nomes);
-//                    i.putExtra("longitude", longitude);
-//                    i.putExtra("latitude", latitude);
-//
-//                    startActivity(v.getContext(), i, new Bundle());
-//                }
             }
         });
     }
@@ -91,7 +71,6 @@ public class ProfissoesAdapter extends RecyclerView.Adapter<ProfissoesAdapter.Pr
     public int getItemCount() {
         return mDataProf.size();
     }
-
 
     public void getPessoas(String profissao, final View view){
         database = FirebaseDatabase.getInstance();
@@ -114,21 +93,13 @@ public class ProfissoesAdapter extends RecyclerView.Adapter<ProfissoesAdapter.Pr
 
                 int size = pessoaArrayList.size();
                 if(size > 0) {
-                    String [] nomes     = new String[size];
-                    double [] longitude = new double[size];
-                    double [] latitude  = new double[size];
-
+                    Parcelable [] parcelable = new Parcelable[size];
                     for (int i = 0; i < size; i++) {
-                        nomes[i]     = pessoaArrayList.get(i).getName();
-                        longitude[i] = pessoaArrayList.get(i).log;
-                        latitude[i]  = pessoaArrayList.get(i).lat;
+                        parcelable[i] = pessoaArrayList.get(i);
                     }
 
-                    Intent i = new Intent(view.getContext(), Locais.class);
-                    i.putExtra("nomes", nomes);
-                    i.putExtra("longitude", longitude);
-                    i.putExtra("latitude", latitude);
-
+                    Intent i = new Intent(view.getContext(), LocaisActivity.class);
+                    i.putExtra("listParcel", parcelable);
                     startActivity(view.getContext(), i, new Bundle());
                 }
             }
